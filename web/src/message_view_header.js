@@ -171,9 +171,6 @@ export function close_search_bar_and_open_narrow_description() {
         return;
     }
     $("#search_query").val("");
-    const filter = narrow_state.filter();
-    if (!filter || filter.is_common_narrow()) {
-        $(".navbar-search").removeClass("expanded");
-        $("#message_view_header").removeClass("hidden");
-    }
+    $(".navbar-search").removeClass("expanded");
+    $("#message_view_header").removeClass("hidden");
 }
