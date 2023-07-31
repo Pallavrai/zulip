@@ -117,6 +117,13 @@
  *   Some input fields like search have visual changes that need to happen
  *   when the typeahead hides. This callback function is called in `hide()`
  *   and allows those extra UI changes to happen.
+ *
+ *  13. Remove custom logic for tab keypresses:
+ *
+ *   Previously tab was treated similarly to the escape or enter key, with
+ *   custom functionality, which also prevented propagation to default tab
+ *   functionality. We removed that so that tab only does one thing while
+ *   focus is in the typeahead -- moves focus to the next element.
  * ============================================================ */
 
 import {insert} from "text-field-edit";
@@ -430,7 +437,6 @@ import {get_string_diff} from "../../src/util";
       const pseudo_keycode = get_pseudo_keycode(e);
 
       switch(pseudo_keycode) {
-        case 9: // tab
         case 13: // enter
         case 27: // escape
           e.preventDefault()
@@ -486,7 +492,6 @@ import {get_string_diff} from "../../src/util";
         case 38: // up arrow
           break
 
-        case 9: // tab
         case 13: // enter
           if (!this.shown) return
           this.select(e)
